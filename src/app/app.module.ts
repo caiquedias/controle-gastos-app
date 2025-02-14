@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,26 +16,20 @@ import { MatButtonModule } from '@angular/material/button';
 // Importação do módulo do ngx-charts
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    GastosComponent,
-    PieChartComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatButtonModule,
-    NgxChartsModule
-  ],
-  providers: [
-    provideClientHydration(),
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        GastosComponent,
+        PieChartComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatButtonModule,
+        NgxChartsModule], providers: [
+        provideClientHydration(),
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule { }
