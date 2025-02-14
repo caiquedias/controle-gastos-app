@@ -1,0 +1,31 @@
+<div>
+    <h2>Lista de Gastos</h2>
+    <table mat-table [dataSource]="gastos" class="mat-elevation-z8">
+      <!-- Coluna ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let gasto">{{ gasto.id }}</td>
+      </ng-container>
+  
+      <!-- Coluna Fonte -->
+      <ng-container matColumnDef="fonte">
+        <th mat-header-cell *matHeaderCellDef>Fonte</th>
+        <td mat-cell *matCellDef="let gasto">{{ gasto.fonte }}</td>
+      </ng-container>
+  
+      <!-- Coluna Dívida -->
+      <ng-container matColumnDef="divida">
+        <th mat-header-cell *matHeaderCellDef>Dívida</th>
+        <td mat-cell *matCellDef="let gasto">{{ gasto.divida }}</td>
+      </ng-container>
+  
+      <!-- Coluna Valor -->
+      <ng-container matColumnDef="valor">
+        <th mat-header-cell *matHeaderCellDef>Valor</th>
+        <td mat-cell *matCellDef="let gasto">{{ gasto.valor | currency }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['id', 'fonte', 'divida', 'valor']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'fonte', 'divida', 'valor']"></tr>
+    </table>
+  </div>
