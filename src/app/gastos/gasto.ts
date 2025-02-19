@@ -5,7 +5,4 @@ export interface Gasto {
     valor: number;
     quinzena: number;
     pago: boolean;
-    valorPrimeiraQuinzena: number;
-    valorSegundaQuinzena: number;
-    valorDevedor: number;
   }

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>
+    {{ data ? (isEdit ? 'Editar Gasto' : 'Visualizar Gasto') : 'Adicionar Gasto' }}
+  </h2>
+  <div mat-dialog-content>
+    <form [formGroup]="gastoForm">
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Fonte</mat-label>
+        <mat-select [(value)]="selected" formControlName="fonte" matNativeControl>
+          <mat-option *ngFor="let option of availableOptions" [value]="option" [disabled]="!isEdit && data">
+            {{getOptionLabel(option)}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Dívida</mat-label>
+        <input matInput formControlName="divida" [readonly]="!isEdit && data">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" formControlName="valor" [readonly]="!isEdit && data">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Quinzena</mat-label>
+        <input matInput type="number" formControlName="quinzena" [readonly]="!isEdit && data">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Pago?</mat-label>
+        <mat-select formControlName="pago" [disabled]="!isEdit && data">
+          <mat-option [value]="true">Sim</mat-option>
+          <mat-option [value]="false">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [disabled]="!isEdit" [mat-dialog-close]="gastoForm.value" cdkFocusInitial>
+      Salvar
+    </button>
+  </div>

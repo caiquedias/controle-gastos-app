@@ -1,0 +1,26 @@
+.main-toolbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px;
+  padding-top: 64px;
+
+
+  .search-card,
+  .chart-card {
+    flex: 1;
+  }
+
+  .search-card {
+    max-width: 300px;
+  }
+}

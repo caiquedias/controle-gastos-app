@@ -1,31 +1,57 @@
-<div>
-    <h2>Lista de Gastos</h2>
-    <table mat-table [dataSource]="gastos" class="mat-elevation-z8">
-      <!-- Coluna ID -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let gasto">{{ gasto.id }}</td>
-      </ng-container>
-  
-      <!-- Coluna Fonte -->
-      <ng-container matColumnDef="fonte">
-        <th mat-header-cell *matHeaderCellDef>Fonte</th>
-        <td mat-cell *matCellDef="let gasto">{{ gasto.fonte }}</td>
-      </ng-container>
-  
-      <!-- Coluna Dívida -->
-      <ng-container matColumnDef="divida">
-        <th mat-header-cell *matHeaderCellDef>Dívida</th>
-        <td mat-cell *matCellDef="let gasto">{{ gasto.divida }}</td>
-      </ng-container>
-  
-      <!-- Coluna Valor -->
-      <ng-container matColumnDef="valor">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell *matCellDef="let gasto">{{ gasto.valor | currency }}</td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="['id', 'fonte', 'divida', 'valor']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'fonte', 'divida', 'valor']"></tr>
-    </table>
+<div class="container">
+  <div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <h2>Lançamento de Despesas não Previstas</h2>
+      <button mat-flat-button (click)="openGastoDialog()">
+        Adicionar
+        <mat-icon>add_circle</mat-icon>
+      </button>
   </div>
+
+  <table mat-table [dataSource]="gastos" class="mat-elevation-z8" style="width: 100%;">
+    <!-- Coluna Fonte -->
+    <ng-container matColumnDef="fonte">
+      <th mat-header-cell *matHeaderCellDef>Fonte</th>
+      <td mat-cell *matCellDef="let gasto">{{ gasto.fonte }}</td>
+    </ng-container>
+
+    <!-- Coluna Dívida -->
+    <ng-container matColumnDef="divida">
+      <th mat-header-cell *matHeaderCellDef>Dívida</th>
+      <td mat-cell *matCellDef="let gasto">{{ gasto.divida }}</td>
+    </ng-container>
+
+    <!-- Coluna Valor -->
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <td mat-cell *matCellDef="let gasto">{{ gasto.valor | currency }}</td>
+    </ng-container>
+
+    <!-- Coluna Pago -->
+    <ng-container matColumnDef="pago">
+      <th mat-header-cell *matHeaderCellDef>Pago?</th>
+      <td mat-cell *matCellDef="let gasto">{{ gasto.pago ? 'Sim' : 'Não' }}</td>
+    </ng-container>
+
+    <!-- Coluna Ações -->
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let gasto">
+        <!-- Botão para visualizar (modo somente visualização) -->
+        <button mat-icon-button color="primary" (click)="openGastoDialog(gasto, false)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <!-- Botão para editar -->
+        <button mat-icon-button color="accent" (click)="openGastoDialog(gasto, true)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <!-- Botão para excluir -->
+        <button mat-icon-button color="warn" (click)="deleteGasto(gasto.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

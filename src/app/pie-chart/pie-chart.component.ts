@@ -8,7 +8,7 @@ import { GastoService } from '../gastos/gasto.service';
 })
 export class PieChartComponent implements OnInit {
   public single: any[] = [];
-  public view: any[] = [700, 400];
+  public view: any[] = [600, 300];
 
   // Opções para o ngx-charts
   public showLegend: boolean = true;
@@ -26,9 +26,10 @@ export class PieChartComponent implements OnInit {
     // Aqui você pode agregar os dados dos gastos por categoria.
     // Exemplo com dados estáticos:
     this.single = [
-      { "name": "Despesa Parental", "value": 1000 },
-      { "name": "Despesa Própria", "value": 2000 },
-      { "name": "Outros", "value": 500 }
+      { "name": "Gastos com mercado (meus pais)", "value": 1000 },
+      { "name": "Gastos com mercado (meu apê)", "value": 2000 },
+      { "name": "Gasto fútil", "value": 500 },
+      { "name": "Serviços", "value": 500 }
     ];
   }
 
